@@ -1,20 +1,96 @@
-// 19-09.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+#pragma once
 #include <iostream>
+#include <chrono>
+#include <string>
+
+#pragma region Functions Declaration Header
+
+void PrintElapsedTime(std::chrono::system_clock::time_point start, std::chrono::system_clock::time_point end);
+void Count(unsigned long long maxCounter);
+void Example01();
+void Example02();
+void Example03();
+void Example04();
+void Example05();
+void Example06();
+void Example07();
+
+#pragma endregion
+
+#pragma region Global Variables
+
+std::chrono::system_clock::time_point startDate;
+
+#pragma endregion
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    startDate = std::chrono::system_clock::now();
+
+    int exampleUsed = 1;
+
+    switch (exampleUsed)
+    {
+    case 1:
+        Example01();
+        break;
+    case 2:
+        Example02();
+        break;
+    case 3:
+        Example03();
+        break;
+    case 4:
+        Example04();
+        break;
+    case 5:
+        Example05();
+        break;
+    case 6:
+        Example06();
+        break;
+    case 7:
+        Example07();
+        break;
+    default:
+        break;
+    }
+
+    std::cout << "Example 0" << exampleUsed << " finished" << std::endl;
+    std::string text = "";
+    std::getline(std::cin, text);
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+void Example01()
+{
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+}
+
+void Example02()
+{
+
+}
+
+void Example03()
+{
+
+}
+
+void Example04()
+{
+
+}
+
+void Example05()
+{
+
+}
+
+void Example06()
+{
+
+}
+void Example07()
+{
+
+}
