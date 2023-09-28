@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Threads-intro.cpp">
+    <ClCompile Include="Threads-examples-active.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
