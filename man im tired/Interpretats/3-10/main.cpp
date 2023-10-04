@@ -1,5 +1,6 @@
 #include <ios>
 #include "ConsoleControl.h"
+#include "InputManager.h"
 
 
 void example() {
@@ -20,7 +21,13 @@ void llegirInput() {
 }
 int main() {
 	
-	std::cout << "hello world" << std::endl;
+	InputManager* IManager = new InputManager();
+
+	IManager->StartListener();
+
+	while (true) {
+
+	}
 
 	
 

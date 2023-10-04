@@ -22,7 +22,7 @@ void InputManager::StartListener()
 	}
 	_isStarted = true;
 	_isStartedMutex->unlock();
-	_listenerThread = new std::thread(&ReadLoop, this);
+	_listenerThread = new std::thread(&InputManager::ReadLoop, this);
 	_listenerThread->detach();
 }
 void InputManager::ReadLoop()
@@ -92,7 +92,7 @@ void InputManager::RemoveListener(unsigned int subscriptionId)
 
 InputManager::KeyBinding::KeyBinding(int keyCode, OnKeyPress onKeyPress)
 {
-	static std::mutex currentIdMutex = std::mutex();
+	static std::mutex currentIdMutex;
 	currentIdMutex.lock();
 	static unsigned int currentId = 0;
 	//^gracias a static currentId sera asignado a 0 la primera vez, 
