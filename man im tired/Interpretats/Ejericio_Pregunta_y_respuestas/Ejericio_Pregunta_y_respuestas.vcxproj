@@ -127,7 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\3-10\ConsoleControl.cpp" />
+    <ClCompile Include="..\3-10\InputManager.cpp" />
     <ClCompile Include="Ejericio_Pregunta_y_respuestas.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\3-10\ConsoleControl.h" />
+    <ClInclude Include="..\3-10\InputManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
