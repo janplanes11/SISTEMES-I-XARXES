@@ -130,10 +130,12 @@
     <ClCompile Include="..\3-10\ConsoleControl.cpp" />
     <ClCompile Include="..\3-10\InputManager.cpp" />
     <ClCompile Include="Ejericio_Pregunta_y_respuestas.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\3-10\ConsoleControl.h" />
     <ClInclude Include="..\3-10\InputManager.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
