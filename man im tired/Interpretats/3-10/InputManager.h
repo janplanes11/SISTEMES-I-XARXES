@@ -33,12 +33,16 @@ private:
 	bool _isStarted = false;
 	std::thread* _listenerThread;
 	void ReadLoop();
+	void RemoveListener(KeyBinding* keyBinding);
+	void SaveListener(KeyBinding* keybinding);
 public:
 	InputManager();
 	~InputManager();
 	void StartListener();
+	void RemoveListenerAsync(unsigned int subscriptionId);
 	void StopListener();
 	unsigned int AddListener(int keyCode, KeyBinding::OnKeyPress);
+	unsigned int AddListenerAsync(int keyCode, unsigned long miliseconsTriggerDelay, KeyBinding::OnKeyPress onKeyPress);
 	void RemoveListener(unsigned int subscriptionId);
 
 };

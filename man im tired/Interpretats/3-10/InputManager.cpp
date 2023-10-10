@@ -49,6 +49,57 @@ void InputManager::ReadLoop()
 		_isStartedMutex->unlock();
 	}
 }
+void InputManager::RemoveListener(unsigned int subscriptionId)
+{
+	_listenersMapMutex->lock();
+
+	for (std::pair<int, std::list<KeyBinding*>*> pair : *_listenersMap)
+	{
+		std::list<KeyBinding*>* keyBindigns = pair.second;  // optimización na más
+
+		for (KeyBinding* binding : *keyBindigns)
+		{
+			if (binding->GetSubscriptionId() == subscriptionId)
+			{
+				keyBindigns->remove(binding);
+				_listenersMapMutex->unlock();
+				return; //Early Exit
+			}
+		}
+	}
+	_listenersMapMutex->unlock();
+
+}
+
+// name space -> espacios para utilizar los nombres de cosas que sean propias de una libreria pero no queremos que detecte la funcion de las variables de esa libreria
+void InputManager::RemoveListenerAsync(unsigned int subscriptionId)
+{
+	std::thread* safeListenerThread = new std::thread(&InputManager::RemoveListener, this, subscriptionId);
+
+	safeListenerThread->detach();
+}
+void InputManager::SaveListener(KeyBinding* keybinding)
+{
+	_listenersMapMutex->lock();
+
+	KeyBindingListsMap::iterator pair = _listenersMap->find(keybinding->keyCode);
+	std::list<KeyBinding*>* keyBindings = nullptr;
+
+
+	if (pair == _listenersMap->end()) // si lo busca y no lo encuentra
+	{
+		keyBindings = new std::list<KeyBinding*>();
+		_listenersMap->emplace(keybinding->keyCode, keyBindings); // .insert(make_pair(keyCode, keyBindings)); 
+	}
+	else
+	{
+		keyBindings = pair->second; //valor de la derecha del mapa 
+	}
+
+	keyBindings->push_back(keybinding);
+
+	_listenersMapMutex->unlock();
+}
 void InputManager::StopListener()
 {
 	_isStartedMutex->lock();
@@ -62,32 +113,17 @@ unsigned int InputManager::AddListener(int keyCode, KeyBinding::OnKeyPress onKey
 	KeyBinding* binding = new KeyBinding(keyCode, onKeyPress); 
 	_listenersMapMutex->lock();
 
-	KeyBindingListsMap::iterator pair = _listenersMap->find(keyCode);
-	std::list<KeyBinding*>* keyBindings = nullptr;
-	if (pair == _listenersMap->end()) {
-		_listenersMap->emplace(keyCode, keyBindings);
-	}
-	else {
-		keyBindings = pair->second;
-	}
-	keyBindings->push_back(binding);
+	
 
 	_listenersMapMutex->unlock();
 	return binding->GetSubscriptionId();
 }
-void InputManager::RemoveListener(unsigned int subscriptionId)
-{
-	_listenersMapMutex->lock();
-	for (std::pair<int, std::list<KeyBinding*>*> pair : *_listenersMap) {
-		std::list<KeyBinding*>* keyBindings = pair.second;
-		for (KeyBinding* binding : *keyBindings) {
-			if (binding->GetSubscriptionId() == subscriptionId) {
-				keyBindings->remove(binding);
-			}
-		}
-	}
-	_listenersMapMutex->unlock();
+unsigned int InputManager::AddListenerAsync(int keyCode, unsigned long miliseconsTriggerDelay, KeyBinding::OnKeyPress onKeyPress) {
+	KeyBinding* binding = new KeyBinding(keyCode,  onKeyPress);
+	std::thread* safeListenerThread = new std::thread(&InputManager::SaveListener, this, binding);
+	return 0;
 }
+
 
 
 InputManager::KeyBinding::KeyBinding(int keyCode, OnKeyPress onKeyPress)
