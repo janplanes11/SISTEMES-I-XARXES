@@ -1,5 +1,5 @@
 #pragma once
-
+#include "ConsoleControl.h"
 class Timer {
 
 public:

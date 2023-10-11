@@ -133,8 +133,8 @@
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\3-10\ConsoleControl.h" />
-    <ClInclude Include="..\3-10\InputManager.h" />
+    <ClInclude Include="ConsoleControl.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
