@@ -1,11 +1,16 @@
 #pragma once
 #include "ConsoleControl.h"
+#include <functional>
 class Timer {
 
 public:
 	Timer(){}
 
-	static void WaitForSeconds(int numAnswers);
+	typedef std::function<void()>OnTimeElapsed;
+	typedef std::function<bool()>OnTimeElapsedLoop;
 
+	static void StartTimer(int seconds, OnTimeElapsed onTimeElapsed);
+	static void DetectInput(int input);
+	
 
 };
