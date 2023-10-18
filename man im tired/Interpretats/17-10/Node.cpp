@@ -5,6 +5,11 @@ Node::Node(Vector2 position)
 	this->_position=position;
 }
 
+Vector2 Node::GetPosition()
+{
+	return _position;
+}
+
 void Node::SetContent(InNodeContent* newContent)
 {
 	_content = newContent;
@@ -12,15 +17,16 @@ void Node::SetContent(InNodeContent* newContent)
 
 void Node::DrawContent(Vector2 offset)
 {
+	Vector2 pos = offset + _position;
 	if (_content == nullptr) {
-		Vector2 pos = offset + _position;
+		
 		ConsoleControl::LockMutex();
 		ConsoleControl::SetPosition(pos.x, pos.y);
 		std::cout << " " << std::endl;
 		ConsoleControl::UnlockMutex();
 		return;
 	}
-	_content->Draw(offset);
+	_content->Draw(pos);
 }
 
 void Node::Lock()

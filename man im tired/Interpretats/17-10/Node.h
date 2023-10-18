@@ -12,6 +12,7 @@ private:
 public:
 	
 	Node(Vector2 position);
+	Vector2 GetPosition();
 	InNodeContent* GetContent();
 	template<typename T, typename = typename std::enable_if<std::is_base_of<InNodeContent, T>::value>::type>
 	//se define SOLO si cumple la condicion de que tiene que estar basado en un InNodeContent
