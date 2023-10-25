@@ -51,17 +51,30 @@ int main()
     if (node->TryGetContent<Coin>(coin)) {
 
     }*/
+    
     Map* map = new Map(Vector2(10, 10), Vector2(2, 2));
-    map->SafePickNode(Vector2(3, 3), [](Node* node) {
-        node->SetContent(new Tree());
-        //node->DrawContent(node->GetPosition());
+    
+   
+    std::list<Vector2>treesPositions =  std::list<Vector2>();
+    treesPositions.push_back(Vector2(3,4));
+    treesPositions.push_back(Vector2(9,2));
+    treesPositions.push_back(Vector2(6,9));
+    treesPositions.push_back(Vector2(7,0));
+    treesPositions.push_back(Vector2(3,3));
+    
+    map->SafePickNodes(treesPositions, [map](std::list<Node*>* nodes) {
+        for (Node* node : *nodes) {
+            if (node != nullptr) {
+                node->SetContent(new Tree());
+                node->DrawContent(map->GetOffest());
+            }
+        }
         });
-    map->SafePickNode(Vector2(7, 7), [](Node* node) {
-        node->SetContent(new Coin());
-        //node->DrawContent(node->GetPosition());
-        });
-    map->UnSafeDraw(); 
 
-    return 0; 
+    while (true)
+    {
+
+    }
+    return 0;
 }
 
