@@ -4,7 +4,7 @@
 class Sword:public Weapon
 {
 public:
-	std::string color = "";
+	std::string color = " ";
 	Sword(std::string color);
 	Json::Value Encode();
 	static Sword* Decode(Json::Value json);

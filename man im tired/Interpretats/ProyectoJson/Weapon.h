@@ -1,5 +1,5 @@
 #pragma once
-#include "dist/json/json.h"
+#include <json/json.h>
 class Weapon
 {
 public: 
@@ -9,7 +9,7 @@ public:
 	int damage = 0;
 	int range = 0;
 	weaponType type = UNKNOWN;
-	Json::Value Encode();
+	virtual Json::Value Encode();
 	static Weapon* Decode(Json::Value json);
 };
 

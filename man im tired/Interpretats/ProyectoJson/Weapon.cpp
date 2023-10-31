@@ -3,6 +3,9 @@
 #include "Sword.h"
 Json::Value Weapon::Encode()
 {
+	Json::Value json = Json::Value();
+	json["damage"] = damage;
+
     return Json::Value();
 }
 

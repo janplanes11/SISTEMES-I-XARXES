@@ -3,6 +3,18 @@
 	{
 		"coin" : 5,
 		"life" : 5,
-		"name" : "TurboSexo"
+		"name" : "TurboSexo",
+		"weapons" : 
+		[
+			{
+				"color" : "Plateada"
+			},
+			{
+				"woodType" : "Mahogany"
+			},
+			{
+				"woodType" : "Pino"
+			}
+		]
 	}
 }
